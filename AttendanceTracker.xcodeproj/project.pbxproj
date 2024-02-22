@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		813324062B854D4E000386EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324052B854D4E000386EB /* AppDelegate.swift */; };
 		813324082B854D4E000386EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324072B854D4E000386EB /* SceneDelegate.swift */; };
-		8133240A2B854D4E000386EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324092B854D4E000386EB /* ViewController.swift */; };
-		8133240D2B854D4E000386EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8133240B2B854D4E000386EB /* Main.storyboard */; };
 		8133240F2B854D51000386EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8133240E2B854D51000386EB /* Assets.xcassets */; };
 		813324122B854D51000386EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813324102B854D51000386EB /* LaunchScreen.storyboard */; };
+		8133241A2B854DAF000386EB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324192B854DAF000386EB /* AppCoordinator.swift */; };
+		8133241D2B854E28000386EB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133241C2B854E28000386EB /* Coordinator.swift */; };
+		813324202B854EE0000386EB /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133241F2B854EE0000386EB /* AuthAssembly.swift */; };
+		813324222B855031000386EB /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324212B855031000386EB /* AuthPresenter.swift */; };
+		813324242B8550C2000386EB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324232B8550C2000386EB /* AuthViewController.swift */; };
+		813324272B85522C000386EB /* AuthModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324262B85522C000386EB /* AuthModuleOutput.swift */; };
+		813324292B85527A000386EB /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324282B85527A000386EB /* AuthView.swift */; };
+		8133242D2B8553F5000386EB /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133242C2B8553F5000386EB /* MainButton.swift */; };
+		8133242F2B85568C000386EB /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133242E2B85568C000386EB /* UIView+.swift */; };
+		813324312B86933C000386EB /* ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324302B86933C000386EB /* ColorPallete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		813324022B854D4E000386EB /* AttendanceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AttendanceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		813324052B854D4E000386EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		813324072B854D4E000386EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		813324092B854D4E000386EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8133240C2B854D4E000386EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8133240E2B854D51000386EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		813324112B854D51000386EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813324132B854D51000386EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813324192B854DAF000386EB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		8133241C2B854E28000386EB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8133241F2B854EE0000386EB /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
+		813324212B855031000386EB /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		813324232B8550C2000386EB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		813324262B85522C000386EB /* AuthModuleOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleOutput.swift; sourceTree = "<group>"; };
+		813324282B85527A000386EB /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		8133242C2B8553F5000386EB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		8133242E2B85568C000386EB /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		813324302B86933C000386EB /* ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPallete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,63 @@
 		813324042B854D4E000386EB /* AttendanceTracker */ = {
 			isa = PBXGroup;
 			children = (
+				8133242A2B8553D8000386EB /* DesingSystem */,
+				8133241E2B854EAB000386EB /* AuthModule */,
+				8133241B2B854DEE000386EB /* Coordinator */,
 				813324052B854D4E000386EB /* AppDelegate.swift */,
 				813324072B854D4E000386EB /* SceneDelegate.swift */,
-				813324092B854D4E000386EB /* ViewController.swift */,
-				8133240B2B854D4E000386EB /* Main.storyboard */,
 				8133240E2B854D51000386EB /* Assets.xcassets */,
 				813324102B854D51000386EB /* LaunchScreen.storyboard */,
 				813324132B854D51000386EB /* Info.plist */,
 			);
 			path = AttendanceTracker;
+			sourceTree = "<group>";
+		};
+		8133241B2B854DEE000386EB /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				813324252B855215000386EB /* Contracts */,
+				813324192B854DAF000386EB /* AppCoordinator.swift */,
+				8133241C2B854E28000386EB /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		8133241E2B854EAB000386EB /* AuthModule */ = {
+			isa = PBXGroup;
+			children = (
+				8133241F2B854EE0000386EB /* AuthAssembly.swift */,
+				813324212B855031000386EB /* AuthPresenter.swift */,
+				813324232B8550C2000386EB /* AuthViewController.swift */,
+				813324282B85527A000386EB /* AuthView.swift */,
+			);
+			path = AuthModule;
+			sourceTree = "<group>";
+		};
+		813324252B855215000386EB /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				813324262B85522C000386EB /* AuthModuleOutput.swift */,
+			);
+			path = Contracts;
+			sourceTree = "<group>";
+		};
+		8133242A2B8553D8000386EB /* DesingSystem */ = {
+			isa = PBXGroup;
+			children = (
+				8133242B2B8553E4000386EB /* Buttons */,
+				8133242E2B85568C000386EB /* UIView+.swift */,
+				813324302B86933C000386EB /* ColorPallete.swift */,
+			);
+			path = DesingSystem;
+			sourceTree = "<group>";
+		};
+		8133242B2B8553E4000386EB /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				8133242C2B8553F5000386EB /* MainButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +191,6 @@
 			files = (
 				813324122B854D51000386EB /* LaunchScreen.storyboard in Resources */,
 				8133240F2B854D51000386EB /* Assets.xcassets in Resources */,
-				8133240D2B854D4E000386EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +201,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8133240A2B854D4E000386EB /* ViewController.swift in Sources */,
+				8133241A2B854DAF000386EB /* AppCoordinator.swift in Sources */,
+				813324222B855031000386EB /* AuthPresenter.swift in Sources */,
+				8133241D2B854E28000386EB /* Coordinator.swift in Sources */,
+				813324312B86933C000386EB /* ColorPallete.swift in Sources */,
+				813324242B8550C2000386EB /* AuthViewController.swift in Sources */,
 				813324062B854D4E000386EB /* AppDelegate.swift in Sources */,
+				813324292B85527A000386EB /* AuthView.swift in Sources */,
+				8133242D2B8553F5000386EB /* MainButton.swift in Sources */,
+				8133242F2B85568C000386EB /* UIView+.swift in Sources */,
+				813324202B854EE0000386EB /* AuthAssembly.swift in Sources */,
 				813324082B854D4E000386EB /* SceneDelegate.swift in Sources */,
+				813324272B85522C000386EB /* AuthModuleOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8133240B2B854D4E000386EB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8133240C2B854D4E000386EB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		813324102B854D51000386EB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +356,6 @@
 				INFOPLIST_FILE = AttendanceTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +383,6 @@
 				INFOPLIST_FILE = AttendanceTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
