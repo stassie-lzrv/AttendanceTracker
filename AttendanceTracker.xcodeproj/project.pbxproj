@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0643772B87FA1900F59738 /* MainTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0643762B87FA1900F59738 /* MainTextField.swift */; };
+		7E06437A2B87FE2100F59738 /* LoginAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0643792B87FE2100F59738 /* LoginAssembly.swift */; };
+		7E06437C2B87FE2D00F59738 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E06437B2B87FE2D00F59738 /* LoginPresenter.swift */; };
+		7E06437E2B87FE4000F59738 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E06437D2B87FE4000F59738 /* LoginViewController.swift */; };
+		7E0643802B87FE4A00F59738 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E06437F2B87FE4A00F59738 /* LoginView.swift */; };
+		7E0643822B88052B00F59738 /* LoginModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0643812B88052B00F59738 /* LoginModuleOutput.swift */; };
 		813324062B854D4E000386EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324052B854D4E000386EB /* AppDelegate.swift */; };
 		813324082B854D4E000386EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813324072B854D4E000386EB /* SceneDelegate.swift */; };
 		8133240F2B854D51000386EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8133240E2B854D51000386EB /* Assets.xcassets */; };
@@ -24,6 +30,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E0643762B87FA1900F59738 /* MainTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextField.swift; sourceTree = "<group>"; };
+		7E0643792B87FE2100F59738 /* LoginAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembly.swift; sourceTree = "<group>"; };
+		7E06437B2B87FE2D00F59738 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		7E06437D2B87FE4000F59738 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7E06437F2B87FE4A00F59738 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7E0643812B88052B00F59738 /* LoginModuleOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleOutput.swift; sourceTree = "<group>"; };
 		813324022B854D4E000386EB /* AttendanceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AttendanceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		813324052B854D4E000386EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		813324072B854D4E000386EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +65,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E0643782B87FDE700F59738 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				7E0643792B87FE2100F59738 /* LoginAssembly.swift */,
+				7E06437B2B87FE2D00F59738 /* LoginPresenter.swift */,
+				7E06437D2B87FE4000F59738 /* LoginViewController.swift */,
+				7E06437F2B87FE4A00F59738 /* LoginView.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
 		813323F92B854D4E000386EB = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +95,7 @@
 		813324042B854D4E000386EB /* AttendanceTracker */ = {
 			isa = PBXGroup;
 			children = (
+				7E0643782B87FDE700F59738 /* LoginModule */,
 				8133242A2B8553D8000386EB /* DesingSystem */,
 				8133241E2B854EAB000386EB /* AuthModule */,
 				8133241B2B854DEE000386EB /* Coordinator */,
@@ -109,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				813324262B85522C000386EB /* AuthModuleOutput.swift */,
+				7E0643812B88052B00F59738 /* LoginModuleOutput.swift */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -116,19 +141,20 @@
 		8133242A2B8553D8000386EB /* DesingSystem */ = {
 			isa = PBXGroup;
 			children = (
-				8133242B2B8553E4000386EB /* Buttons */,
+				8133242B2B8553E4000386EB /* Controls */,
 				8133242E2B85568C000386EB /* UIView+.swift */,
 				813324302B86933C000386EB /* ColorPallete.swift */,
 			);
 			path = DesingSystem;
 			sourceTree = "<group>";
 		};
-		8133242B2B8553E4000386EB /* Buttons */ = {
+		8133242B2B8553E4000386EB /* Controls */ = {
 			isa = PBXGroup;
 			children = (
 				8133242C2B8553F5000386EB /* MainButton.swift */,
+				7E0643762B87FA1900F59738 /* MainTextField.swift */,
 			);
-			path = Buttons;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,13 +229,19 @@
 			files = (
 				8133241A2B854DAF000386EB /* AppCoordinator.swift in Sources */,
 				813324222B855031000386EB /* AuthPresenter.swift in Sources */,
+				7E0643772B87FA1900F59738 /* MainTextField.swift in Sources */,
 				8133241D2B854E28000386EB /* Coordinator.swift in Sources */,
 				813324312B86933C000386EB /* ColorPallete.swift in Sources */,
+				7E06437A2B87FE2100F59738 /* LoginAssembly.swift in Sources */,
 				813324242B8550C2000386EB /* AuthViewController.swift in Sources */,
 				813324062B854D4E000386EB /* AppDelegate.swift in Sources */,
+				7E0643822B88052B00F59738 /* LoginModuleOutput.swift in Sources */,
 				813324292B85527A000386EB /* AuthView.swift in Sources */,
+				7E06437C2B87FE2D00F59738 /* LoginPresenter.swift in Sources */,
+				7E0643802B87FE4A00F59738 /* LoginView.swift in Sources */,
 				8133242D2B8553F5000386EB /* MainButton.swift in Sources */,
 				8133242F2B85568C000386EB /* UIView+.swift in Sources */,
+				7E06437E2B87FE4000F59738 /* LoginViewController.swift in Sources */,
 				813324202B854EE0000386EB /* AuthAssembly.swift in Sources */,
 				813324082B854D4E000386EB /* SceneDelegate.swift in Sources */,
 				813324272B85522C000386EB /* AuthModuleOutput.swift in Sources */,

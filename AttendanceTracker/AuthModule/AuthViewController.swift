@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 public protocol AuthViewInput: AnyObject {
-    
 }
 
 final class AuthViewController: UIViewController {
@@ -19,6 +18,7 @@ final class AuthViewController: UIViewController {
         super.viewDidLoad()
         let customView = AuthView()
         customView.configure()
+        customView.delegate = self
         view = customView
     }
     
@@ -26,4 +26,14 @@ final class AuthViewController: UIViewController {
 
 extension AuthViewController: AuthViewInput {
     
+}
+
+extension AuthViewController: AuthViewControllerDelegate {
+    func startRegistration() {
+        output?.showRegistrationScreen()
+    }
+
+    func startLogin() {
+        output?.showLoginScreen()
+    }
 }

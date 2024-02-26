@@ -12,7 +12,8 @@ public protocol AuthModuleInput {
 }
 
 public protocol AuthViewOutput {
-    
+    func showRegistrationScreen()
+    func showLoginScreen()
 }
 
 class AuthPresenter {
@@ -26,6 +27,12 @@ extension AuthPresenter: AuthModuleInput {
 }
 
 extension AuthPresenter: AuthViewOutput {
-    
+    func showRegistrationScreen() {
+        output?.navigateToRegistration()
+    }
+
+    func showLoginScreen() {
+        output?.navigateToLogin()
+    }
 }
 
