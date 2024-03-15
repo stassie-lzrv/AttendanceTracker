@@ -10,11 +10,13 @@ import UIKit
 
 class LoginAssembly {
     static func build(
-        moduleOutput: LoginModuleOutput?
+        moduleOutput: LoginModuleOutput?,
+        type: LoginView.LoginType
     ) -> (UIViewController, LoginModuleInput) {
         let view = LoginViewController()
         let presenter = LoginPresenter()
         presenter.output = moduleOutput
+        presenter.loginType = type
         presenter.view = view
         view.output = presenter
         return (view, presenter)

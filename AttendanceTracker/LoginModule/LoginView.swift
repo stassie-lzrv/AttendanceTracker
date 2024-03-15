@@ -121,7 +121,12 @@ public final class LoginView: UIView {
                 title: "Продолжить",
                 titleColor: .white,
                 action: { [weak self] in
-                    self?.delegate?.continueWithRegistration()
+                    switch type {
+                        case .login:
+                            self?.delegate?.continueWithLogin()
+                        case .registration:
+                            self?.delegate?.continueWithRegistration()
+                    }
                 }
             )
         )

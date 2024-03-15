@@ -1,16 +1,15 @@
 import Foundation
 import UIKit
 
-class AuthAssembly {
+class MainAssembly {
     static func build(
-        moduleOutput: AuthModuleOutput?
-    ) -> (UIViewController, AuthModuleInput) {
-        let view = AuthViewController()
-        let presenter = AuthPresenter()
+        moduleOutput: MainModuleOutput?
+    ) -> (UIViewController, MainModuleInput) {
+        let view = MainViewController()
+        let presenter = MainPresenter()
         presenter.output = moduleOutput
         presenter.view = view
         view.output = presenter
         return (view, presenter)
     }
 }
-

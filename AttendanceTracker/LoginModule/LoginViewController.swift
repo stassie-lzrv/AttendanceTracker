@@ -17,7 +17,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let customView = LoginView()
-        customView.configure(type: .registration)
+        customView.configure(type: output?.loginType ?? .registration)
         customView.delegate = self
         view = customView
 

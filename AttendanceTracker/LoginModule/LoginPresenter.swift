@@ -14,12 +14,15 @@ public protocol LoginModuleInput {
 public protocol LoginViewOutput {
     func continueWithRegistration()
     func continueWithLogin()
+
+    var loginType: LoginView.LoginType { get }
 }
 
 class LoginPresenter {
     weak var view: LoginViewInput?
 
     var output: LoginModuleOutput?
+    var loginType: LoginView.LoginType = .registration
 }
 
 extension LoginPresenter: LoginModuleInput {
@@ -34,5 +37,6 @@ extension LoginPresenter: LoginViewOutput {
     func continueWithLogin() {
         print("continue with login")
     }
+
 }
 
