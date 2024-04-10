@@ -6,3 +6,10 @@ This app allows teachers and student track attendance more efficiently, main fea
 - Generating QR code for classes: For each class, the teacher can generate a QR code
 - Scanning QR code: The student can mark their visit by scanning the QR code and entering a unique code
 - Viewing statistics: General and detailed statistics for students and teachers
+
+### For student
+https://github.com/stassie-lzrv/AttendanceTracker/assets/97458617/57852eee-5b40-44cf-84f2-a10d00663afc
+
+### For teachers
+https://github.com/stassie-lzrv/AttendanceTracker/assets/97458617/07665dd3-dd1c-4070-9c28-eccc7de075da
+
