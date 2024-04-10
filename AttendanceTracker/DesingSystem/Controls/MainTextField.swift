@@ -5,11 +5,20 @@ public final class MainTextField: UIView {
 
     public struct ViewModel {
         let placeHolder: String?
-        let systemImageName: String?
+        let text: String?
+        let rightSystemImageName: String?
+        let leftSystemImageName: String?
 
-        init(placeHolder: String?, systemImageName: String?) {
+        init(
+            placeHolder: String? = nil,
+            text: String? = nil,
+            rightSystemImageName: String? = nil,
+            leftSystemImageName: String? = nil
+        ) {
             self.placeHolder = placeHolder
-            self.systemImageName = systemImageName
+            self.text = text
+            self.rightSystemImageName = rightSystemImageName
+            self.leftSystemImageName = leftSystemImageName
         }
     }
 
@@ -18,7 +27,14 @@ public final class MainTextField: UIView {
     private var rigthImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = ColorPallet.labelSecondary
+        imageView.tintColor = ColorPallete.labelSecondary
+        return imageView
+    }()
+    
+    private var leftImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = ColorPallete.labelSecondary
         return imageView
     }()
 
@@ -39,23 +55,38 @@ public final class MainTextField: UIView {
     public func set(_ viewModel: ViewModel) {
         self.viewModel = viewModel
     }
+    
+    public func getText() -> String? {
+        return textField.text
+    }
 
     private func updateView() {
         guard let viewModel else { return }
         textField.placeholder = viewModel.placeHolder
-        if let systemImageName = viewModel.systemImageName {
-            let image = UIImage(systemName: systemImageName)
+        if let text = viewModel.text {
+            textField.text = text
+        }
+        if let rightSystemImageName = viewModel.rightSystemImageName {
+            let image = UIImage(systemName: rightSystemImageName)
             rigthImageView.image = image
             rigthImageView.isHidden = false
         } else {
             rigthImageView.isHidden = true
+        }
+        
+        if let leftSystemImageName = viewModel.leftSystemImageName {
+            let image = UIImage(systemName: leftSystemImageName)
+            leftImageView.image = image
+            leftImageView.isHidden = false
+        } else {
+            leftImageView.isHidden = true
         }
         setNeedsLayout()
     }
 
     public override init(frame: CGRect) {
         super.init(frame: .zero)
-        backgroundColor = ColorPallet.backgroundSecondary
+        backgroundColor = ColorPallete.backgroundSecondary
         layer.cornerRadius = 12
         setupSubviews()
         applyLayout()
@@ -69,17 +100,21 @@ public final class MainTextField: UIView {
         addSubview(mainStackView)
         mainStackView.addArrangedSubview(rigthImageView)
         mainStackView.addArrangedSubview(textField)
+        mainStackView.addArrangedSubview(leftImageView)
     }
 
     private func applyLayout() {
-        [rigthImageView, mainStackView].forEach {
+        [rigthImageView, mainStackView, leftImageView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
         addToEdges(subview: mainStackView, left: 10, right: -10)
         NSLayoutConstraint.activate([
             rigthImageView.heightAnchor.constraint(equalToConstant: 25),
-            rigthImageView.widthAnchor.constraint(equalToConstant: 25)
+            rigthImageView.widthAnchor.constraint(equalToConstant: 25),
+            
+            leftImageView.heightAnchor.constraint(equalToConstant: 25),
+            leftImageView.widthAnchor.constraint(equalToConstant: 25)
         ])
     }
 }

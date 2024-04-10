@@ -1,18 +1,17 @@
-//
-//  LoginView.swift
-//  AttendanceTracker
-//
-//  Created by Anastasia Lazareva on 23.02.2024.
-//
-
 import Foundation
 import UIKit
 
 public protocol LoginViewControllerDelegate: AnyObject {
     func continueWithRegistration()
     func continueWithLogin()
-
 }
+
+public protocol LoginViewDelegate: AnyObject {
+    func getName() -> String?
+    func getEmail() -> String?
+    func getPassword() -> String?
+}
+
 public final class LoginView: UIView {
     public enum LoginType {
         case login
@@ -31,17 +30,39 @@ public final class LoginView: UIView {
 
     private let appNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.text = "Attendance Tracker"
-        label.textColor = ColorPallet.accentColor
+        label.textColor = ColorPallete.accentColor
         return label
     }()
 
     private let mainIcon: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "mainIcon")
+        let image = UIImage(named: "logo")
         imageView.image = image
         return imageView
+    }()
+    
+    private let horizontalStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.contentMode = .scaleAspectFit
+        stack.spacing = 10
+        return stack
+    }()
+    
+    private let teacherLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.text = "Я преподаватель"
+        label.textColor = ColorPallete.labelSecondary
+        return label
+    }()
+    
+    private let teacherSwitch: UISwitch = {
+        let uiSwitch = UISwitch()
+        uiSwitch.transform = CGAffineTransformMakeScale(0.75, 0.75);
+        return uiSwitch
     }()
 
     private let nameTextField = MainTextField()
@@ -61,14 +82,18 @@ public final class LoginView: UIView {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        
+        [teacherLabel, teacherSwitch].forEach {
+            horizontalStackView.addArrangedSubview($0)
+        }
 
-        [nameTextField, emailTextField, passwordTextField].forEach {
+        [horizontalStackView, nameTextField, emailTextField, passwordTextField].forEach {
             mainStackView.addArrangedSubview($0)
         }
     }
 
     private func applyLayout() {
-        backgroundColor = ColorPallet.backgroundPrimary
+        backgroundColor = UIColor(patternImage: UIImage(named: "background") ?? UIImage())
         [appNameLabel, mainIcon, mainStackView, continueButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -77,11 +102,10 @@ public final class LoginView: UIView {
             appNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
             appNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            mainIcon.widthAnchor.constraint(equalToConstant: 70),
-            mainIcon.heightAnchor.constraint(equalToConstant: 70),
+            mainIcon.widthAnchor.constraint(equalToConstant: 120),
+            mainIcon.heightAnchor.constraint(equalToConstant: 100),
             mainIcon.topAnchor.constraint(equalTo: appNameLabel.bottomAnchor, constant: 30),
             mainIcon.centerXAnchor.constraint(equalTo: centerXAnchor),
-
 
             mainStackView.topAnchor.constraint(equalTo: mainIcon.bottomAnchor, constant: 30),
             mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
@@ -102,18 +126,19 @@ public final class LoginView: UIView {
         switch type {
             case .login:
                 nameTextField.isHidden = true
+                horizontalStackView.isHidden = true
             case .registration:
                 break
         }
         nameTextField.set(
-            MainTextField.ViewModel(placeHolder: "Имя Фамилия Отчество", systemImageName: "doc")
+            MainTextField.ViewModel(placeHolder: "Фамилия Имя Отчество", rightSystemImageName: "doc")
         )
         emailTextField.set(
-            MainTextField.ViewModel(placeHolder: "Учебная почта", systemImageName: "envelope")
+            MainTextField.ViewModel(placeHolder: "Учебная почта", rightSystemImageName: "envelope")
         )
 
         passwordTextField.set(
-            MainTextField.ViewModel(placeHolder: "Пароль", systemImageName: "lock")
+            MainTextField.ViewModel(placeHolder: "Пароль", rightSystemImageName: "lock")
         )
 
         continueButton.set(
@@ -130,7 +155,22 @@ public final class LoginView: UIView {
                 }
             )
         )
-        continueButton.backgroundColor = ColorPallet.accentColor
+        continueButton.backgroundColor = ColorPallete.accentColor
     }
 
+}
+
+extension LoginView: LoginViewDelegate {
+    public func getName() -> String? {
+        return nameTextField.getText()
+    }
+    
+    public func getEmail() -> String? {
+        return emailTextField.getText()
+    }
+    
+    public func getPassword() -> String? {
+        return passwordTextField.getText()
+    }
+    
 }

@@ -1,10 +1,3 @@
-//
-//  MainButton.swift
-//  AttendanceTracker
-//
-//  Created by Настя Лазарева on 21.02.2024.
-//
-
 import Foundation
 import UIKit
 
@@ -18,7 +11,7 @@ public final class MainButton: UIButton {
         
         init(
             title: String,
-            titleColor: UIColor = ColorPallet.labelSecondary,
+            titleColor: UIColor = ColorPallete.labelSecondary,
             subtitle: String? = nil,
             systemImageName: String? = nil,
             action: (() -> Void)? = nil
@@ -40,22 +33,22 @@ public final class MainButton: UIButton {
     private var rigthImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = ColorPallet.labelSecondary
+        imageView.tintColor = ColorPallete.labelSecondary
         return imageView
     }()
 
     private let title: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.textColor = ColorPallet.labelSecondary
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.textColor = ColorPallete.labelSecondary
         label.textAlignment = .left
         return label
     }()
     
     private let subtitle: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 10, weight: .regular)
-        label.textColor = ColorPallet.labelSecondary
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.textColor = ColorPallete.labelSecondary
         return label
     }()
     
@@ -108,7 +101,7 @@ public final class MainButton: UIButton {
     }
     
     private func setupView() {
-        backgroundColor = ColorPallet.backgroundSecondary
+        backgroundColor = ColorPallete.backgroundSecondary
         layer.cornerRadius = 12
         setupSubviews()
         applyLayout()

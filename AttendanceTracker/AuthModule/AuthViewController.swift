@@ -1,8 +1,7 @@
 import Foundation
 import UIKit
 
-public protocol AuthViewInput: AnyObject {
-}
+public protocol AuthViewInput: AnyObject { }
 
 final class AuthViewController: UIViewController {
     var output: AuthViewOutput?
@@ -17,11 +16,7 @@ final class AuthViewController: UIViewController {
     
 }
 
-extension AuthViewController: AuthViewInput {
-    
-}
-
-extension AuthViewController: AuthViewControllerDelegate {
+extension AuthViewController: AuthViewControllerDelegate, AuthViewInput {
     func startRegistration() {
         output?.showRegistrationScreen()
     }

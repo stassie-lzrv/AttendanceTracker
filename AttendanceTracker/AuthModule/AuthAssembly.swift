@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class AuthAssembly {
+enum AuthAssembly {
     static func build(
         moduleOutput: AuthModuleOutput?
     ) -> (UIViewController, AuthModuleInput) {

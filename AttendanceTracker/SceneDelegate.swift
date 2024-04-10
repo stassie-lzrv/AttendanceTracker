@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  AttendanceTracker
-//
-//  Created by Настя Лазарева on 21.02.2024.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

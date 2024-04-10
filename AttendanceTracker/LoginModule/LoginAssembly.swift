@@ -1,22 +1,15 @@
-//
-//  LoginAssembly.swift
-//  AttendanceTracker
-//
-//  Created by Anastasia Lazareva on 23.02.2024.
-//
-
 import Foundation
 import UIKit
 
-class LoginAssembly {
+enum LoginAssembly {
     static func build(
         moduleOutput: LoginModuleOutput?,
+        apiService: APIService,
         type: LoginView.LoginType
     ) -> (UIViewController, LoginModuleInput) {
         let view = LoginViewController()
-        let presenter = LoginPresenter()
+        let presenter = LoginPresenter(loginType: type, apiService: apiService)
         presenter.output = moduleOutput
-        presenter.loginType = type
         presenter.view = view
         view.output = presenter
         return (view, presenter)

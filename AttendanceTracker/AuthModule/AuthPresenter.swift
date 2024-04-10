@@ -1,8 +1,6 @@
 import Foundation
 
-public protocol AuthModuleInput {
-    
-}
+public protocol AuthModuleInput { }
 
 public protocol AuthViewOutput {
     func showRegistrationScreen()
@@ -15,11 +13,7 @@ class AuthPresenter {
     var output: AuthModuleOutput?
 }
 
-extension AuthPresenter: AuthModuleInput {
-    
-}
-
-extension AuthPresenter: AuthViewOutput {
+extension AuthPresenter: AuthViewOutput, AuthModuleInput {
     func showRegistrationScreen() {
         output?.navigateToRegistration()
     }

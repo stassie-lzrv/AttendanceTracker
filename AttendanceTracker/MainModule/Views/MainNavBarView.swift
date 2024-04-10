@@ -11,29 +11,28 @@ public final class MainNavBarView: UIView {
         return stack
     }()
 
-    private let nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.text = "Лазарева Анастасия"
-        label.textColor = ColorPallet.labelPrimary
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.textColor = ColorPallete.labelPrimary
         return label
     }()
 
-    private let profileIcon: UIButton = {
+    let profileIcon: UIButton = {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular, scale: .default)
         let image = UIImage(systemName: "person")?.applyingSymbolConfiguration(largeConfig)
         let button = UIButton()
         button.setImage(image, for: .normal)
-        button.tintColor = ColorPallet.labelSecondary
+        button.tintColor = ColorPallete.labelSecondary
         return button
     }()
 
-    private let courseListIcon:UIButton = {
+    let qrIcon: UIButton = {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular, scale: .default)
-        let image = UIImage(systemName: "books.vertical")?.applyingSymbolConfiguration(largeConfig)
+        let image = UIImage(systemName: "qrcode.viewfinder")?.applyingSymbolConfiguration(largeConfig)
         let button = UIButton()
         button.setImage(image, for: .normal)
-        button.tintColor = ColorPallet.labelSecondary
+        button.tintColor = ColorPallete.labelSecondary
         return button
     }()
 
@@ -55,7 +54,7 @@ public final class MainNavBarView: UIView {
 
     private func setupSubviews() {
         addSubview(mainStackView)
-        [nameLabel, profileIcon, courseListIcon].forEach {
+        [nameLabel, profileIcon, qrIcon].forEach {
             mainStackView.addArrangedSubview($0)
         }
     }

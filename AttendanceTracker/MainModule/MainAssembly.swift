@@ -3,10 +3,12 @@ import UIKit
 
 class MainAssembly {
     static func build(
-        moduleOutput: MainModuleOutput?
+        moduleOutput: MainModuleOutput?,
+        apiService: APIService,
+        token: String
     ) -> (UIViewController, MainModuleInput) {
         let view = MainViewController()
-        let presenter = MainPresenter()
+        let presenter = MainPresenter(token: token, apiService: apiService)
         presenter.output = moduleOutput
         presenter.view = view
         view.output = presenter

@@ -2,6 +2,10 @@ import Foundation
 import UIKit
 
 public protocol NewCourseViewInput: AnyObject {
+    func showStartTimeSelector()
+    func showEndTimeSelector()
+    func showTimeTable(_ timeTable: [String])
+    func showNewCourseCodeWidget(code: String)
 }
 
 final class NewCourseViewController: UIViewController {
@@ -11,38 +15,8 @@ final class NewCourseViewController: UIViewController {
         "Ежемесячно",
         "Ежегодно"
     ]
-    var customView: NewCourseView?
-    var dates: [DateComponents]? {
-        didSet {
-            guard let dates = dates else { return }
-            self.customView?.setSelection(dates: dates)
-        }
-    }
-//    let data = [
-//        "1 раз в неделю",
-//        "2 раза в неделю",
-//        "3 раза в неделю",
-//        "4 раза в неделю",
-//        "5 раз в неделю",
-//        "6 раз в неделю",
-//        "7 раз в неделю",
-//    ]
-
-//    let regularity = [
-//        "Понедельник",
-//        "Вторник",
-//        "Среда",
-//        "Четверг",
-//        "Пятница"
-//    ]
-//
-//    let ешьу = [
-//        "Понедельник",
-//        "Вторник",
-//        "Среда",
-//        "Четверг",
-//        "Пятница"
-//    ]
+    var customView: NewCourseViewDelegate?
+    let newCourseWidget = NewCourseWidget()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,44 +25,79 @@ final class NewCourseViewController: UIViewController {
         customView.delegate = self
         customView.configure()
         view = customView
+        setupWidget()
+        self.customView?.configure(for: .teacher)
+        
+        navigationItem.hidesBackButton = true
+        if let image = UIImage(systemName: "chevron.backward")?.withTintColor(.black) {
+            let sizeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .default)
+            let button = UIBarButtonItem(image: image.applyingSymbolConfiguration(sizeConfig), style: .plain, target: self, action: #selector(backButtonTapped))
+            self.navigationItem.leftBarButtonItem = button
+        }
+    }
+    
+    @objc
+    func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func setupWidget() {
+        newCourseWidget.isHidden = true
+        newCourseWidget.closeButton.addTarget(self, action: #selector(hideWidget), for: .touchUpInside)
+        
+        view.addSubview(newCourseWidget)
+        newCourseWidget.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            newCourseWidget.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            newCourseWidget.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            newCourseWidget.widthAnchor.constraint(equalToConstant: 300),
+            newCourseWidget.heightAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+
+    @objc
+    func hideWidget() {
+        newCourseWidget.isHidden = true
+        backButtonTapped()
+    }
+}
+
+extension NewCourseViewController: NewCourseViewInput {
+    func showStartTimeSelector() {
+        customView?.showStartTimeSelector()
+    }
+    
+    func showEndTimeSelector() {
+        customView?.showEndTimeSelector()
+    }
+    
+    func showTimeTable(_ timeTable: [String]) {
+        customView?.showTimeTable(timeTable)
+    }
+    
+    func showNewCourseCodeWidget(code: String) {
+        newCourseWidget.setText(code)
+        newCourseWidget.isHidden = false
     }
 
 }
 
-extension NewCourseViewController: NewCourseViewInput {
-
-}
-
 extension NewCourseViewController: NewCourseViewControllerDelegate {
+    func doneSelectingTime(_ time: Date) {
+        output?.doneSelectingTime(time)
+    }
+    
+    func saveCourse(title: String, description: String) {
+        newCourseWidget.title.text = "Статистика"
+        output?.saveCourse(title: title, description: description)
+    }
+    
     func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
-        var dates: [Date] = []
-        guard let selectedDate = Calendar.current.date(from: dateComponents) else {
-            return
-        }
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.weekday], from: selectedDate)
-        guard let weekday = components.weekday else { return }
-
-        // Ваша логика для определения диапазона дат
-        let startDate = calendar.date(byAdding: .year, value: 0, to: selectedDate)!
-        let endDate = calendar.date(byAdding: .month, value: 3, to: selectedDate)!
-
-        var currentDate = startDate
-        while currentDate <= endDate {
-            let currentComponents = calendar.dateComponents([.weekday], from: currentDate)
-            if currentComponents.weekday == weekday {
-                dates.append(currentDate)
-            }
-            currentDate = calendar.date(byAdding: .day, value: 7, to: currentDate)!
-        }
-
-        var dateComponentsArray = dates.map { date -> DateComponents in
-            return Calendar.current.dateComponents([.year, .month, .day], from: date)
-        }
-        dateComponentsArray.append(dateComponents)
+        guard var dateComponentsArray = output?.didSelectDate(dateComponents) else { return }
         dateComponentsArray.append(contentsOf: selection.selectedDates)
         selection.setSelectedDates(dateComponentsArray, animated: true)
-//        selection.setSelectedDates(dateComponentsArray, animated: true)
+        view.setNeedsLayout()
     }
 
     func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
@@ -109,8 +118,22 @@ extension NewCourseViewController: NewCourseViewControllerDelegate {
     }
 }
 
-extension NewCourseViewController: UICalendarSelectionSingleDateDelegate {
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        print(dateComponents)
+extension NewCourseViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == ColorPallete.labelSecondary {
+            textView.text = nil
+            textView.textColor = ColorPallete.labelPrimary
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            if textView.tag == 0 {
+                textView.text = "Название"
+            } else {
+                textView.text = "Описание"
+            }
+            textView.textColor = ColorPallete.labelSecondary
+        }
     }
 }

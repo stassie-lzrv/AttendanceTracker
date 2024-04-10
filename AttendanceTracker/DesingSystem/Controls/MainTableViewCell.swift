@@ -1,25 +1,35 @@
 import Foundation
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+public class MainTableViewCell: UITableViewCell {
 
     public struct ViewModel {
         let title: String
         let subtitle: String?
-        let systemImageName: String?
+        let titleColor: UIColor
+        
+        let leftSystemImageName: String?
+        let leftImageColor: UIColor?
+        let rightSystemImageName: String?
+        
         let action: (() -> Void)?
 
         init(
             title: String,
-            titleColor: UIColor = ColorPallet.labelSecondary,
+            titleColor: UIColor = ColorPallete.labelPrimary,
             subtitle: String? = nil,
-            systemImageName: String? = nil,
-            action: (() -> Void)? = nil
+            leftSystemImageName: String? = nil,
+            leftImageColor: UIColor? = nil,
+            action: (() -> Void)? = nil,
+            rightSystemImageName: String? = nil
         ) {
             self.title = title
+            self.titleColor = titleColor
             self.subtitle = subtitle
-            self.systemImageName = systemImageName
+            self.leftSystemImageName = leftSystemImageName
+            self.leftImageColor = leftImageColor
             self.action = action
+            self.rightSystemImageName = rightSystemImageName
         }
     }
 
@@ -32,24 +42,29 @@ class MainTableViewCell: UITableViewCell {
     private var rigthImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = ColorPallet.labelSecondary
+        imageView.tintColor = ColorPallete.labelPrimary
+        return imageView
+    }()
+    
+    private var leftImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = ColorPallete.labelPrimary
         return imageView
     }()
 
     private let title: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.text = "Название"
-        label.textColor = ColorPallet.labelSecondary
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.textColor = ColorPallete.labelPrimary
         label.textAlignment = .left
         return label
     }()
 
     private let subtitle: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 10, weight: .regular)
-        label.text = "Dhtvz"
-        label.textColor = ColorPallet.labelSecondary
+        label.font = .preferredFont(forTextStyle: .caption2)
+        label.textColor = ColorPallete.labelPrimary
         return label
     }()
 
@@ -70,8 +85,8 @@ class MainTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setupView()
-        backgroundColor = .blue
     }
 
     required init?(coder: NSCoder) {
@@ -85,28 +100,49 @@ class MainTableViewCell: UITableViewCell {
     private func updateView() {
         guard let viewModel else { return }
         title.text = viewModel.title
-        subtitle.text = viewModel.subtitle
-        if let systemImageName = viewModel.systemImageName {
-            let image = UIImage(systemName: systemImageName)
+        if let subtitleText = viewModel.subtitle {
+            subtitle.text = subtitleText
+            subtitle.isHidden = false
+        } else {
+            subtitle.text = nil
+            subtitle.isHidden = true
+        }
+        title.textColor = viewModel.titleColor
+        title.textAlignment = .left
+        subtitle.textColor = viewModel.titleColor
+        if let systemImageName = viewModel.leftSystemImageName {
+            var image = UIImage(systemName: systemImageName)
+            leftImageView.image = image
+            leftImageView.isHidden = false
+        } else {
+            leftImageView.isHidden = true
+        }
+        
+        if let leftImageColor = viewModel.leftImageColor {
+            leftImageView.tintColor = leftImageColor
+        }
+        
+        if let rightSystemImageName = viewModel.rightSystemImageName {
+            let image = UIImage(systemName: rightSystemImageName)
             rigthImageView.image = image
             rigthImageView.isHidden = false
-            title.textAlignment = .left
         } else {
             rigthImageView.isHidden = true
-            title.textAlignment = .center
         }
         setNeedsLayout()
     }
 
     private func setupView() {
-        backgroundColor = ColorPallet.backgroundSecondary
+        backgroundColor = .clear
         setupSubviews()
         applyLayout()
     }
 
     private func setupSubviews() {
-        mainStack.addArrangedSubview(rigthImageView)
+        mainStack.addArrangedSubview(leftImageView)
         mainStack.addArrangedSubview(verticalStack)
+        mainStack.addArrangedSubview(rigthImageView)
+        
         verticalStack.addArrangedSubview(title)
         verticalStack.addArrangedSubview(subtitle)
     }
@@ -116,7 +152,10 @@ class MainTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             rigthImageView.heightAnchor.constraint(equalToConstant: 25),
-            rigthImageView.widthAnchor.constraint(equalToConstant: 25)
+            rigthImageView.widthAnchor.constraint(equalToConstant: 25),
+            
+            leftImageView.heightAnchor.constraint(equalToConstant: 25),
+            leftImageView.widthAnchor.constraint(equalToConstant: 25)
         ])
     }
 }
